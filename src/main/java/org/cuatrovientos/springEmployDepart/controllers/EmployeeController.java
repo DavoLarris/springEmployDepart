@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.cuatrovientos.springEmployDepart.dao.EmployeeDAO;
+import org.cuatrovientos.springEmployDepart.dtos.EmployeeDTO;
+import org.cuatrovientos.springEmployDepart.mapper.EmployeeMapper;
 import org.cuatrovientos.springEmployDepart.models.Employee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,7 +77,7 @@ public class EmployeeController {
 		logger.info("Showing custom view GET ");
 
 		
-		model.put("employee", new Employee());
+		model.put("employee", new EmployeeDTO());
 		model.put("department", employeeDAO.getDepartments());
 		
 		return "employee/newEmployee";
@@ -87,15 +89,16 @@ public class EmployeeController {
 	 * @return the name of the view to show RequestMapping({"/employees/new"})
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = { "/employees/new" })
-	public ModelAndView createEmployee(@Valid Employee employee, BindingResult bindingResult) {
-		logger.info("Saveview POST " + employee.getId());
-
+	public ModelAndView createEmployee(@Valid EmployeeDTO employeeDTO, BindingResult bindingResult) {
+		logger.info("Saveview POST " + employeeDTO.getId());
 		ModelAndView modelAndView = new ModelAndView();
 
-		System.out.println(bindingResult.getAllErrors().toString());
+
+		Employee employee = EmployeeMapper.toEmployee(employeeDTO, employeeDAO.getDepartment(employeeDTO.getIdDepartment()));
+
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("employee/newEmployee");
-			modelAndView.addObject("employee", employee);
+			modelAndView.addObject("employee", employeeDTO);
 			modelAndView.addObject("department", employeeDAO.getDepartments());
 			return modelAndView;
 		}

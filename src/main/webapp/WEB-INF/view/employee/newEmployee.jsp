@@ -71,7 +71,7 @@
 			<div class="form-group">
 				<label for="department" class="control-label col-sm-1">Department</label>
 				<div class="col-sm-11">
-					<sf:select path="idDepartment" class="form-control">
+					<sf:select path="id" class="form-control">
 						<sf:options items="${department}" itemLabel="id"
 							itemValue="id" />
 					</sf:select>

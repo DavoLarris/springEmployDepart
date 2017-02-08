@@ -11,7 +11,6 @@ public class EmployeeDTO {
 	private String telephone;
 	//Adding new fields
 	private int idDepartment;
-	private String nameDepartment;
 	
 	/**
 	 * default constructor
@@ -20,13 +19,12 @@ public class EmployeeDTO {
 		
 	}
 	
-	public EmployeeDTO(int id, String name, Date birthDate, String telephone, int idDepartment, String nameDepartment) {
+	public EmployeeDTO(int id, String name, Date birthDate, String telephone, int idDepartment) {
 		this.id = id;
 		this.name = name;
 		this.birthDate = birthDate;
 		this.telephone = telephone;
 		this.idDepartment = idDepartment;
-		this.nameDepartment = nameDepartment;
 	}
 
 	public int getId() {
@@ -67,14 +65,6 @@ public class EmployeeDTO {
 
 	public void setIdDepartment(int idDepartment) {
 		this.idDepartment = idDepartment;
-	}
-
-	public String getNameDepartment() {
-		return nameDepartment;
-	}
-
-	public void setNameDepartment(String nameDepartment) {
-		this.nameDepartment = nameDepartment;
 	}
 
 }

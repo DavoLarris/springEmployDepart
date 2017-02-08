@@ -4,7 +4,7 @@ import org.cuatrovientos.springEmployDepart.dtos.EmployeeDTO;
 import org.cuatrovientos.springEmployDepart.models.Department;
 import org.cuatrovientos.springEmployDepart.models.Employee;
 
-public class TaskMapper {
+public class EmployeeMapper {
 
 	public static Employee toEmployee(EmployeeDTO employeeDTO, Department department) {
 		Employee employee = new Employee();
@@ -17,7 +17,7 @@ public class TaskMapper {
 
 	public static EmployeeDTO toDTO(Employee employee) {
 		EmployeeDTO employeeDTO = new EmployeeDTO(employee.getId(), employee.getName(),
-				employee.getBirthDate(), employee.getTelephone(), employee.getDepartment().getId(), employee.getDepartment().getName());
+				employee.getBirthDate(), employee.getTelephone(), employee.getDepartment().getId());
 		return employeeDTO;
 	}
 
