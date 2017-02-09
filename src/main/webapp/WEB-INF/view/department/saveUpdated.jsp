@@ -30,8 +30,8 @@
 	</nav>
 	<div class="container">
 		<div class="jumbotron">
-			<h1>Ok, employee ${employee.getId()} called
-				${employee.getName()} was UPDATED</h1>
+			<h1>Ok, department ${department.getId()} called
+				"${department.getName()}" was UPDATED</h1>
 		</div>
 		<footer>
 			<hr />

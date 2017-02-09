@@ -8,9 +8,9 @@ public class EmployeeMapper {
 
 	public static Employee toEmployee(EmployeeDTO employeeDTO, Department department) {
 		Employee employee = new Employee();
-		employee.setId(employeeDTO.getId());
 		employee.setName(employeeDTO.getName());
-		employee.setName(employeeDTO.getName());
+		employee.setBirthDate(employeeDTO.getBirthDate());
+		employee.setTelephone(employeeDTO.getTelephone());
 		employee.setDepartment(department);
 		return employee;
 	}

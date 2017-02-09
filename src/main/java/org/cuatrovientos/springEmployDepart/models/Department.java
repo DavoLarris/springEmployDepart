@@ -17,8 +17,8 @@ import javax.persistence.OneToMany;
 public class Department {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Pattern(regexp = "[0-9]+", message = "Please, enter a number.")
-	@Size(min=1, max=1, message = "Size avaliable is 1 char long.")
+	//@Pattern(regexp = "[0-9]+", message = "Please, enter a number.")
+	//@Size(min=1, message = "Size avaliable is 1 char long.")
 	private int id;
 	
 	@NotNull(message = "Please enter your name.")
@@ -31,7 +31,7 @@ public class Department {
 	private String description;
 	
 	
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER, mappedBy ="department")
+	@OneToMany(cascade=CascadeType.MERGE,fetch=FetchType.EAGER, mappedBy ="department")
 	private List<Employee> employees;
 	
 	public Department(){

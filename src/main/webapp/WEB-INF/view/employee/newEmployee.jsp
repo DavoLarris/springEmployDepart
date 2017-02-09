@@ -34,7 +34,6 @@
 				</ul>
 
 			</div>
-			<!--/.nav-collapse -->
 		</div>
 	</nav>
 	<div class="container">
@@ -71,10 +70,8 @@
 			<div class="form-group">
 				<label for="department" class="control-label col-sm-1">Department</label>
 				<div class="col-sm-11">
-					<sf:select path="id" class="form-control">
-						<sf:options items="${department}" itemLabel="id"
-							itemValue="id" />
-					</sf:select>
+					<sf:select path="idDepartment" items="${department}" class="form-control" />
+					<sf:errors path="idDepartment" cssClass="error" />
 				</div>
 			</div>
 			<div class="form-group">

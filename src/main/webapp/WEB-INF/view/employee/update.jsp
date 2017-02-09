@@ -10,7 +10,6 @@
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 
-<script src="<c:url value="/resources/js/validateUserForm.js" />"></script>
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
@@ -28,21 +27,19 @@
 				</ul>
 
 			</div>
-			<!--/.nav-collapse -->
 		</div>
 	</nav>
-	<div class="jumbotron">
-		<div class="container">
+	<div class="container">
+		<div class="jumbotron">
 			<h1>Update employee</h1>
 		</div>
 
-		<s:url var="action" value="/employees/saveUpdated" />
-		<sf:form method="post" modelAttribute="employee"
-			class="form-horizontal" action="${action}">
+		<s:url var="post_employee" value="/employees/saveUpdated" />
+		<sf:form method="post" modelAttribute="employee" class="form-horizontal" action="${post_employee}">
 			<div class="form-group">
 				<label for="id" class="control-label col-sm-1">Id</label>
 				<div class="col-sm-11">
-					<sf:input path="id" class="form-control" placeholder="ID" />
+					<sf:input path="id" readonly="true" class="form-control" placeholder="ID" />
 					<sf:errors path="id" cssClass="error" />
 				</div>
 			</div>

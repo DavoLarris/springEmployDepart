@@ -2,13 +2,27 @@ package org.cuatrovientos.springEmployDepart.dtos;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 public class EmployeeDTO {
 
 	private int id;
+	@NotNull(message = "Please enter your name.")
+	@Pattern(regexp = "[A-Za-z]+", message = "Must only contain chars")
 	private String name;
+	
+	@NotNull(message = "Please enter your birth date")
+	@DateTimeFormat(pattern="dd-mm-yyyy")
 	private Date birthDate;
+	
+	@NotNull(message = "Please enter your phone number")
+	@Pattern(regexp = "[0-9]+", message = "Must only contain numbers")
 	private String telephone;
+	
 	//Adding new fields
 	private int idDepartment;
 	

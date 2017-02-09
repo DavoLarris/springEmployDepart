@@ -78,7 +78,7 @@ public class EmployeeController {
 
 		
 		model.put("employee", new EmployeeDTO());
-		model.put("department", employeeDAO.getDepartments());
+		model.put("department", employeeDAO.getDepartmentsId());
 		
 		return "employee/newEmployee";
 	}
@@ -93,15 +93,15 @@ public class EmployeeController {
 		logger.info("Saveview POST " + employeeDTO.getId());
 		ModelAndView modelAndView = new ModelAndView();
 
-
-		Employee employee = EmployeeMapper.toEmployee(employeeDTO, employeeDAO.getDepartment(employeeDTO.getIdDepartment()));
-
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("employee/newEmployee");
 			modelAndView.addObject("employee", employeeDTO);
-			modelAndView.addObject("department", employeeDAO.getDepartments());
+			modelAndView.addObject("department", employeeDAO.getDepartmentsId());
 			return modelAndView;
 		}
+		
+		Employee employee = EmployeeMapper.toEmployee(employeeDTO, employeeDAO.getDepartment(employeeDTO.getIdDepartment()));
+
 
 		if (employeeDAO.insert(employee)) {
 			// We return view name
@@ -160,7 +160,7 @@ public class EmployeeController {
 		modelAndView.addObject("employee", employee);
 
 		// The same as return "employee/saveUpdate"
-		modelAndView.setViewName("employee/saveUpdated");
+		modelAndView.setViewName("employee/created");
 		return modelAndView;
 	}
 

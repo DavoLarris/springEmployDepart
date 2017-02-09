@@ -16,12 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-/**
- * Controller for users.
- * 
- * @author Eugenia Pérez Martínez
- *
- */
 @Controller
 public class DepartmentController {
 	private static final Logger logger = LoggerFactory.getLogger(DepartmentController.class);
@@ -98,7 +92,7 @@ public class DepartmentController {
 	 */
 	@RequestMapping(value = "/departments/saveupdate", method = RequestMethod.POST)
 	public ModelAndView saveUpdateTask(Department department) {
-		logger.info("Save update task " + department.getId());
+		logger.info("Save update department " + department.getId());
 
 		departmentDAO.update(department);
 

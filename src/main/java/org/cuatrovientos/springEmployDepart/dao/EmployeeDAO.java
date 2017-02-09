@@ -40,11 +40,11 @@ public class EmployeeDAO extends GenericDAO<Employee> {
 	}
 
 	@Transactional(readOnly = true)
-	public List<Integer> getDepartments() {
+	public List<Integer> getDepartmentsId() {
 
 		List<Integer> departments = null;
 
-		Query query = getSession().createQuery("FROM Department");
+		Query query = getSession().createQuery("SELECT id FROM Department");
 
 		// We get a generic object list
 		departments = query.list();

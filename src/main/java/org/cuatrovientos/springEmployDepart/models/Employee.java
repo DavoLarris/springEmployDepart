@@ -9,30 +9,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@NotNull(message = "Please enter your name.")
-	@Pattern(regexp = "[A-Za-z]+", message = "Must only contain chars")
-	private String name;
-	
-	@NotNull(message = "Please enter your birth date")
-	@DateTimeFormat(pattern="dd-mm-yyyy")
+	private String name;	
 	private Date birthDate;
-	
-	@NotNull(message = "Please enter your phone number")
-	@Pattern(regexp = "[0-9]+", message = "Must only contain numbers")
 	private String telephone;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	private Department department;
 	
 
