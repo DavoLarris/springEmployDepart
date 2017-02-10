@@ -10,10 +10,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spring forms :: Departments</title>
-
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
 	rel="stylesheet">
+
 <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 </head>
 <body>
@@ -24,13 +24,32 @@
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="<s:url value="/employees/" />" title="Employees">Employees</a></li>
+					<li><a href="<s:url value="/employees/" />"
+						title="<s:message code="navbar.employees"></s:message>"><s:message
+								code="navbar.employees"></s:message></a></li>
 					<li><a href="<s:url value="/employees/new" />"
-						title="New employee">New employee</a></li>
+						title="<s:message code="navbar.newEm"></s:message>"><s:message
+								code="navbar.newEm"></s:message></a></li>
 					<li><a href="<s:url value="/departments/" />"
-						title="Departments">See departments</a></li>
+						title="<s:message code="navbar.depart"></s:message>"><s:message
+								code="navbar.depart"></s:message></a></li>
 				</ul>
-
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="true"><s:message
+								code="navbar.language"></s:message> <span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="?locale=en"><img src="blank.gif"
+									class="flag flag-gb"
+									alt="<s:message code="english"></s:message>" /> <s:message
+										code="english"></s:message></a></li>
+							<li><a href="?locale=es"><img src="blank.gif"
+									class="flag flag-es"
+									alt="<s:message code="spanish"></s:message>" /> <s:message
+										code="spanish"></s:message></a></li>
+						</ul></li>
+				</ul>
 			</div>
 		</div>
 	</nav>
@@ -58,10 +77,9 @@
 						<td>${department.getDescription()}</td>
 						<td><a class="btn btn-success"
 							href="<s:url value="/departments/${department.getId()}" />"
-							title="Detailed info"> see detail</a>  <a
-							class="btn btn-warning"
+							title="Detailed info"> see detail</a> <a class="btn btn-warning"
 							href="<c:url value="/departments/update/${department.getId()}" />">update</a>
-							 <a class="btn btn-danger"
+							<a class="btn btn-danger"
 							href="<c:url value="/departments/delete/${department.getId()}" />">delete</a></td>
 					</tr>
 				</c:forEach>
@@ -75,7 +93,6 @@
 			</div>
 		</footer>
 	</div>
-
 	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script
 		src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>

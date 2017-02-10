@@ -59,4 +59,11 @@ public class EmployeeDAO extends GenericDAO<Employee> {
 
 		return depart;
 	}
+	
+	@Transactional
+	public void deleteAll(){
+		String stringQuery = "DELETE FROM Employee";
+		Query query = getSession().createQuery(stringQuery);
+		query.executeUpdate();
+	}
 }

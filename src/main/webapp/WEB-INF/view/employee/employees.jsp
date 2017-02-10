@@ -14,6 +14,7 @@
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
 	rel="stylesheet">
+
 <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 </head>
 <body>
@@ -24,8 +25,8 @@
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="<s:url value="/employees/" />" 
-					title="<s:message code="navbar.employees"></s:message>"><s:message
+					<li><a href="<s:url value="/employees/" />"
+						title="<s:message code="navbar.employees"></s:message>"><s:message
 								code="navbar.employees"></s:message></a></li>
 					<li><a href="<s:url value="/employees/new" />"
 						title="<s:message code="navbar.newEm"></s:message>"><s:message
@@ -59,34 +60,44 @@
 			<h1>Employees list</h1>
 			<p>These are the employees currently in the system.</p>
 		</div>
+		<c:choose>
+			<c:when test="${not empty employees}">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>BirthDate</th>
+							<th>Telephone</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${employees}" var="employee">
+							<tr>
+								<td>${employee.getName()}</td>
+								<td>${employee.getBirthDate()}</td>
+								<td>${employee.getTelephone()}</td>
+								<td><a class="btn btn-success"
+									href="<s:url value="/employees/${employee.getId()}" />"
+									title="Detailed info"> see detail</a> <a
+									class="btn btn-warning"
+									href="<c:url value="/employees/update/${employee.getId()}" />">update</a>
+									<a class="btn btn-danger"
+									href="<c:url value="/employees/delete/${employee.getId()}" />">delete</a></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				<a class="btn btn-danger"
+					href="<s:url value="/employees/deleteall" />" title="Delete all">Delete
+					all</a>
 
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>BirthDate</th>
-					<th>Telephone</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${employees}" var="employee">
-					<tr>
-						<td>${employee.getName()}</td>
-						<td>${employee.getBirthDate()}</td>
-						<td>${employee.getTelephone()}</td>
-						<td><a class="btn btn-success"
-							href="<s:url value="/employees/${employee.getId()}" />"
-							title="Detailed info"> see detail</a>  <a
-							class="btn btn-warning"
-							href="<c:url value="/employees/update/${employee.getId()}" />">update</a>
-							 <a class="btn btn-danger"
-							href="<c:url value="/employees/delete/${employee.getId()}" />">delete</a></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+			</c:when>
 
+			<c:otherwise>
+				<h1>I´m afraid this is empty</h1>
+			</c:otherwise>
+		</c:choose>
 		<footer>
 			<hr />
 			<div class="navbar container">
@@ -94,7 +105,6 @@
 			</div>
 		</footer>
 	</div>
-
 	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script
 		src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>

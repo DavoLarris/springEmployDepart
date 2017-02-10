@@ -4,36 +4,53 @@
 <html>
 <head>
 <title>Deleted.jsp</title>
-
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
 	rel="stylesheet">
+
 <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
-
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">Departments app</a>
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Employees app</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="<s:url value="/employees/" />"
+						title="<s:message code="navbar.employees"></s:message>"><s:message
+								code="navbar.employees"></s:message></a></li>
+					<li><a href="<s:url value="/employees/new" />"
+						title="<s:message code="navbar.newEm"></s:message>"><s:message
+								code="navbar.newEm"></s:message></a></li>
+					<li><a href="<s:url value="/departments/" />"
+						title="<s:message code="navbar.depart"></s:message>"><s:message
+								code="navbar.depart"></s:message></a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="true"><s:message
+								code="navbar.language"></s:message> <span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="?locale=en"><img src="blank.gif"
+									class="flag flag-gb"
+									alt="<s:message code="english"></s:message>" /> <s:message
+										code="english"></s:message></a></li>
+							<li><a href="?locale=es"><img src="blank.gif"
+									class="flag flag-es"
+									alt="<s:message code="spanish"></s:message>" /> <s:message
+										code="spanish"></s:message></a></li>
+						</ul></li>
+				</ul>
+			</div>
 		</div>
-		<div id="navbar" class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li><a href="<s:url value="/employees/" />" title="Employees">Employees</a></li>
-				<li><a href="<s:url value="/employees/new" />"
-					title="New employee">New employee</a></li>
-				<li><a href="<s:url value="/departments/" />"
-					title="Departments">Departments</a></li>
-			</ul>
-
-		</div>
-		<!--/.nav-collapse -->
 	</nav>
 	<div class="container">
 		<h1>Ok, department ${departmentId} was deleted</h1>
-	
 
-
-	<footer>
+		<footer>
 			<hr />
 			<div class="navbar container">
 				<p class="text-muted">&copy; 2017 David Larrea</p>
@@ -43,6 +60,5 @@
 	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script
 		src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
 </body>
 </html>

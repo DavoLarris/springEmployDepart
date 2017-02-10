@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -89,7 +90,7 @@ public class EmployeeController {
 	 * @return the name of the view to show RequestMapping({"/employees/new"})
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = { "/employees/new" })
-	public ModelAndView createEmployee(@Valid EmployeeDTO employeeDTO, BindingResult bindingResult) {
+	public ModelAndView createEmployee(@ModelAttribute("employee") @Valid EmployeeDTO employeeDTO, BindingResult bindingResult) {
 		logger.info("Saveview POST " + employeeDTO.getId());
 		ModelAndView modelAndView = new ModelAndView();
 
@@ -123,7 +124,7 @@ public class EmployeeController {
 	 */
 	@RequestMapping(value = "/employees/delete/{id}", method = RequestMethod.GET)
 	public String delete(@PathVariable(value = "id") Integer employeeId, Model model) {
-		logger.info("Employee detail /delete");
+		logger.info("Employee delete");
 		
 		
 		employeeDAO.delete(employeeDAO.selectById(employeeId, Employee.class));
@@ -131,6 +132,19 @@ public class EmployeeController {
 
 		return "employee/deleted";
 	}
+	
+	
+	/**
+	 * Delete the specific employee
+	 */
+	@RequestMapping(value = "/employees/deleteall", method = RequestMethod.GET)
+	public String deleteAll() {
+		logger.info("Employee deleteAll");
+		employeeDAO.deleteAll();
+
+		return "employee/employees";
+	}
+	
 	
 	/**
 	 * Simply selects the employee view
