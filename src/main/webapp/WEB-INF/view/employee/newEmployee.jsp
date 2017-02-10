@@ -54,7 +54,7 @@
 			<div class="form-group">
 				<label for="birthDate" class="control-label col-sm-1">BirthDate</label>
 				<div class="col-sm-11">
-					<sf:input path="birthDate" class="form-control" type="date"
+					<sf:input path="birthDate" class="form-control" type="text"
 						placeholder="00-00-0000" />
 					<sf:errors path="birthDate" cssClass="error" />
 				</div>

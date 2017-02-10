@@ -94,6 +94,7 @@ public class EmployeeController {
 		ModelAndView modelAndView = new ModelAndView();
 
 		if (bindingResult.hasErrors()) {
+			logger.info(bindingResult.getAllErrors().toString());
 			modelAndView.setViewName("employee/newEmployee");
 			modelAndView.addObject("employee", employeeDTO);
 			modelAndView.addObject("department", employeeDAO.getDepartmentsId());
