@@ -3,7 +3,12 @@ package org.cuatrovientos.springEmployDepart.controllers;
 import java.util.List;
 import java.util.Map;
 
-import org.cuatrovientos.springEmployDepart.dao.GenericDAO;
+import javax.validation.Valid;
+
+import org.cuatrovientos.springEmployDepart.dao.DepartmentDAO;
+import org.cuatrovientos.springEmployDepart.dtos.DepartmentDTO;
+import org.cuatrovientos.springEmployDepart.mapper.DepartmentMapper;
+import org.cuatrovientos.springEmployDepart.mapper.EmployeeMapper;
 import org.cuatrovientos.springEmployDepart.models.Department;
 import org.cuatrovientos.springEmployDepart.models.Employee;
 import org.slf4j.Logger;
@@ -11,6 +16,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,7 +28,7 @@ public class DepartmentController {
 	private static final Logger logger = LoggerFactory.getLogger(DepartmentController.class);
 
 	@Autowired
-	private GenericDAO<Department> departmentDAO;
+	private DepartmentDAO departmentDAO;
 
 	
 	/**
@@ -43,21 +50,51 @@ public class DepartmentController {
 	}
 	
 	/**
+	 * handles /employees/new by GET
+	 * 
+	 * @return the name of the view to show RequestMapping({"/departments/new"})
+	 */
+	@RequestMapping(method = RequestMethod.GET, value = { "/departments/new" })
+	public String newDepartment(Map<String, Object> model) {
+		logger.info("Showing custom view GET ");
+		
+		model.put("department", new DepartmentDTO());
+		model.put("employees", departmentDAO.getEmployeeIds());
+		
+		return "department/newDepartment";
+	}
+	
+	/**
 	 * handles /departments/task/new by POST
 	 * 
 	 * @return the name of the view to show RequestMapping({"/departments/new"})
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = { "/departments/new" })
-	public ModelAndView createDepartment(Department department) {
-
+	public ModelAndView createDepartment(@ModelAttribute("department") @Valid DepartmentDTO departmentDTO, BindingResult bindingResult) {
+		logger.info("Saveview POST " + departmentDTO.getId());
 		ModelAndView modelAndView = new ModelAndView();
+		logger.info(bindingResult.getAllErrors().toString());
+		if (bindingResult.hasErrors()) {
+			
+			modelAndView.setViewName("department/newDepartment");
+			modelAndView.addObject("department", departmentDTO);
+			modelAndView.addObject("employees", departmentDAO.getEmployeeIds());
+			return modelAndView;
+		}
+		
+		Department department = DepartmentMapper.toDepartment(departmentDTO, departmentDAO.getList(departmentDTO.getIdsEmployees()));
 
-		departmentDAO.insert(department);
-		// We return view name
-		modelAndView.setViewName("department/created");
-		modelAndView.addObject("department", department);
-		logger.info("Saveview POST " + department.getId());
 
+		if (departmentDAO.insert(department)) {
+			// We return view name
+			modelAndView.setViewName("department/created");
+			modelAndView.addObject("department", department);
+		} else {
+			modelAndView.setViewName("error");
+			modelAndView
+					.addObject("error",
+							"An error ocurred while trying to create a new department. Please, try again");
+		}
 		return modelAndView;
 	}
 

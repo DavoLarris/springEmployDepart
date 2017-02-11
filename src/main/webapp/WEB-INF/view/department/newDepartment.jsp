@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- No pueden convivir c & sgf? da error y no arranca -->
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,12 +27,12 @@
 					<li><a href="<s:url value="/employees/" />"
 						title="<s:message code="navbar.employees"></s:message>"><s:message
 								code="navbar.employees"></s:message></a></li>
-					<li><a href="<s:url value="/employees/new" />"
-						title="<s:message code="navbar.newEm"></s:message>"><s:message
-								code="navbar.newEm"></s:message></a></li>
 					<li><a href="<s:url value="/departments/" />"
 						title="<s:message code="navbar.depart"></s:message>"><s:message
 								code="navbar.depart"></s:message></a></li>
+					<li><a href="<s:url value="/departments/new" />"
+						title="<s:message code="navbar.newDepart"></s:message>"><s:message
+								code="navbar.newDepart"></s:message></a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -55,33 +55,46 @@
 	</nav>
 	<div class="container">
 		<div class="jumbotron">
-			<h1>User created</h1>
+			<h1>New employee</h1>
+			<p>See this employee info</p>
 		</div>
-
-
-		<div class="alert alert-success" role="alert"><s:message code="messageSuccess"></s:message></div>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Id</th>
-					<th><s:message
-								code="table.name"></s:message></th>
-					<th><s:message
-								code="table.date"></s:message></th>
-					<th><s:message
-								code="table.telephone"></s:message></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>${employee.getId()}</td>
-					<td>${employee.getName()}</td>
-					<td>${employee.getBirthDate()}</td>
-					<td>${employee.getTelephone()}</td>
-				</tr>
-			</tbody>
-		</table>
-
+		<c:url var="post_employee" value="/departments/new" />
+		<sf:form method="post" modelAttribute="department"
+			class="form-horizontal" action="${post_employee}">
+			<div class="form-group">
+				<label for="name" class="control-label col-sm-1"><s:message
+						code="table.name"></s:message></label>
+				<div class="col-sm-11">
+					<sf:input path="name" class="form-control" placeholder="Name" />
+					<sf:errors path="name" cssClass="error" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="description" class="control-label col-sm-1"><s:message
+						code="table.description"></s:message></label>
+				<div class="col-sm-11">
+					<sf:input path="description" class="form-control" type="text" />
+					<sf:errors path="description" cssClass="error" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="employees" class="control-label col-sm-1"><s:message
+						code="navbar.employees"></s:message></label>
+				<div class="col-sm-11">
+					<sf:select multiple="true" path="idsEmployees">
+						<sf:options items="${employees}" />
+					</sf:select>
+					<sf:errors path="idsEmployees" cssClass="error" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-1 col-sm-11">
+					<sf:button type="submit" class="btn btn-default">
+						<s:message code="btn.submit"></s:message>
+					</sf:button>
+				</div>
+			</div>
+		</sf:form>
 
 		<footer>
 			<hr />

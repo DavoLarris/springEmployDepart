@@ -48,7 +48,7 @@
 		</div>
 	</nav>
 	<div class="container">
-		<h1>Ok, ${employeeId} user was deleted</h1>
+		<h1><s:message code="okMess"></s:message> ${employeeId} <s:message code="restMess"></s:message></h1>
 
 
 

@@ -56,8 +56,8 @@
 	</nav>
 	<div class="container">
 		<div class="jumbotron">
-			<h1>Department detail</h1>
-			<p>See this department info</p>
+			<h1><s:message code="departDetail"></s:message></h1>
+			<p><s:message code="departInfo"></s:message></p>
 		</div>
 		<c:choose>
 			<c:when test="${not empty department}">
@@ -65,8 +65,8 @@
 					<thead>
 						<tr>
 							<th>Id</th>
-							<th>Name</th>
-							<th>Description</th>
+							<th><s:message code="table.name"></s:message></th>
+							<th><s:message code="table.description"></s:message></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -78,16 +78,16 @@
 					</tbody>
 				</table>
 
-				<h3>Employees</h3>
+				<h3><s:message code="navbar.employees"></s:message></h3>
 				<c:choose>
 					<c:when test="${not empty department.getEmployees()}">
 						<table class="table">
 							<thead>
 								<tr>
-									<th>Name</th>
-									<th>BirthDate</th>
-									<th>Telephone</th>
-									<th>Actions</th>
+									<th><s:message code="table.name"></s:message></th>
+									<th><s:message code="table.date"></s:message></th>
+									<th><s:message code="table.telephone"></s:message></th>
+									<th><s:message code="table.actions"></s:message></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -98,11 +98,11 @@
 										<td>${employee.getTelephone()}</td>
 										<td><a class="btn btn-success"
 											href="<s:url value="/employees/${employee.getId()}" />"
-											title="Detailed info"> see detail</a> <a
+											title="Detailed info"><s:message code="btnDetail"></s:message></a> <a
 											class="btn btn-warning"
-											href="<c:url value="/employees/update/${employee.getId()}" />">update</a>
+											href="<c:url value="/employees/update/${employee.getId()}" />"><s:message code="btnUpdate"></s:message></a>
 											<a class="btn btn-danger"
-											href="<c:url value="/employees/delete/${employee.getId()}" />">delete</a></td>
+											href="<c:url value="/employees/delete/${employee.getId()}" />"><s:message code="btnDelete"></s:message></a></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -110,13 +110,12 @@
 						</table>
 					</c:when>
 					<c:otherwise>
-						<p>No employees in this department</p>
+						<p><s:message code="messageError4"></s:message></p>
 					</c:otherwise>
 				</c:choose>
 			</c:when>
 			<c:otherwise>
-				<div>A department with the id specified has not been found.
-					Please, try again</div>
+				<p><s:message code="messageError5"></s:message></p>
 			</c:otherwise>
 		</c:choose>
 

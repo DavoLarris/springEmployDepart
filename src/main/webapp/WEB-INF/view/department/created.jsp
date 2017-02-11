@@ -56,17 +56,16 @@
 	<div class="container">
 
 		<div class="jumbotron">
-			<h1>Department created</h1>
+			<h1><s:message code="messageCreated"></s:message></h1>
 		</div>
 
-		<div class="alert alert-success" role="alert">The following
-			department has been created successfully</div>
+		<div class="alert alert-success" role="alert"><s:message code="messageSuccess2"></s:message></div>
 		<table class="table">
 			<thead>
 				<tr>
 					<th>Id</th>
-					<th>Name</th>
-					<th>Description</th>
+					<th><s:message code="table.name"></s:message></th>
+					<th><s:message code="table.description"></s:message></th>
 				</tr>
 			</thead>
 			<tbody>

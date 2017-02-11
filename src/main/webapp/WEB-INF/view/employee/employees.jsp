@@ -57,18 +57,18 @@
 	<div class="container">
 
 		<div class="jumbotron">
-			<h1>Employees list</h1>
-			<p>These are the employees currently in the system.</p>
+			<h1><s:message code="messageList"></s:message></h1>
+			<p><s:message code="messageCurrently"></s:message></p>
 		</div>
 		<c:choose>
 			<c:when test="${not empty employees}">
 				<table class="table">
 					<thead>
 						<tr>
-							<th>Name</th>
-							<th>BirthDate</th>
-							<th>Telephone</th>
-							<th>Actions</th>
+							<th><s:message code="table.name"></s:message></th>
+							<th><s:message code="table.date"></s:message></th>
+							<th><s:message code="table.telephone"></s:message></th>
+							<th><s:message code="table.actions"></s:message></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -79,23 +79,22 @@
 								<td>${employee.getTelephone()}</td>
 								<td><a class="btn btn-success"
 									href="<s:url value="/employees/${employee.getId()}" />"
-									title="Detailed info"> see detail</a> <a
+									title="Detailed info"><s:message code="btnDetail"></s:message></a> <a
 									class="btn btn-warning"
-									href="<c:url value="/employees/update/${employee.getId()}" />">update</a>
+									href="<c:url value="/employees/update/${employee.getId()}" />"><s:message code="btnUpdate"></s:message></a>
 									<a class="btn btn-danger"
-									href="<c:url value="/employees/delete/${employee.getId()}" />">delete</a></td>
+									href="<c:url value="/employees/delete/${employee.getId()}" />"><s:message code="btnDelete"></s:message></a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 				<a class="btn btn-danger"
-					href="<s:url value="/employees/deleteall" />" title="Delete all">Delete
-					all</a>
+					href="<s:url value="/employees/deleteall" />" title="Delete all"><s:message code="btnDeleteAll"></s:message></a>
 
 			</c:when>
 
 			<c:otherwise>
-				<h1>I´m afraid this is empty</h1>
+				<h1><s:message code="messageError3"></s:message></h1>
 			</c:otherwise>
 		</c:choose>
 		<footer>

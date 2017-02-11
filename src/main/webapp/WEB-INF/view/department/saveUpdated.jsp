@@ -49,8 +49,8 @@
 	</nav>
 	<div class="container">
 		<div class="jumbotron">
-			<h1>Ok, department ${department.getId()} called
-				"${department.getName()}" was UPDATED</h1>
+			<h1><s:message code="okMess2"></s:message> ${department.getId()} <s:message code="calledMess"></s:message>
+				"${department.getName()}" <s:message code="updateMess"></s:message></h1>
 		</div>
 		<footer>
 			<hr />

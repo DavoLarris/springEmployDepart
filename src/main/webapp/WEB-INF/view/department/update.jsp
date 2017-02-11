@@ -65,14 +65,14 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="name" class="control-label col-sm-1">Name</label>
+				<label for="name" class="control-label col-sm-1"><s:message code="table.name"></s:message></label>
 				<div class="col-sm-11">
 					<sf:input path="name" class="form-control" type="text"
 						placeholder="Name" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="description" class="control-label col-sm-1">Description</label>
+				<label for="description" class="control-label col-sm-1"><s:message code="table.description"></s:message></label>
 				<div class="col-sm-11">
 					<sf:textarea path="description" class="form-control"
 						placeholder="Description" />
@@ -80,7 +80,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-1 col-sm-11">
-					<sf:button class="btn btn-default">Update</sf:button>
+					<sf:button class="btn btn-default"><s:message code="btn.submit"></s:message></sf:button>
 				</div>
 			</div>
 		</sf:form>

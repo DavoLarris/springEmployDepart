@@ -8,12 +8,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Generic DAO to share logic between all the specific DAOs.
- * 
- * @author Eugenia P�rez Mart�nez
- *
- */
 
 public class GenericDAO<T> {
 
@@ -47,7 +41,7 @@ public class GenericDAO<T> {
 	@Transactional
 	public boolean insert(T entity) {
 		Serializable id = null;
-		getSession().persist(entity);
+		getSession().saveOrUpdate(entity);
 		getSession().flush();
 		
 		id = getSession().getIdentifier(entity);

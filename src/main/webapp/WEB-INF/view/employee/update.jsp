@@ -65,22 +65,22 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="name" class="control-label col-sm-1">Name</label>
+				<label for="name" class="control-label col-sm-1"><s:message code="table.name"></s:message></label>
 				<div class="col-sm-11">
 					<sf:input path="name" class="form-control" placeholder="Name" />
 					<sf:errors path="name" cssClass="error" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="birthDate" class="control-label col-sm-1">BirthDate</label>
+				<label for="birthDate" class="control-label col-sm-1"><s:message code="table.date"></s:message></label>
 				<div class="col-sm-11">
-					<sf:input path="birthDate" class="form-control" type="date"
+					<sf:input path="birthDate" class="form-control" type="text"
 						placeholder="00-00-0000" />
 					<sf:errors path="birthDate" cssClass="error" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="telephone" class="control-label col-sm-1">Telephone</label>
+				<label for="telephone" class="control-label col-sm-1"><s:message code="table.telephone"></s:message></label>
 				<div class="col-sm-11">
 					<sf:input path="telephone" class="form-control" type="tel"
 						placeholder="Telephone" />
@@ -89,7 +89,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-1 col-sm-11">
-					<sf:button type="submit" class="btn btn-default">Submit</sf:button>
+					<sf:button type="submit" class="btn btn-default"><s:message code="btn.submit"></s:message></sf:button>
 				</div>
 			</div>
 		</sf:form>

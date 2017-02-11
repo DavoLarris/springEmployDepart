@@ -26,13 +26,13 @@
 				<ul class="nav navbar-nav">
 					<li><a href="<s:url value="/employees/" />"
 						title="<s:message code="navbar.employees"></s:message>"><s:message
-								code="navbar.employees"></s:message></a></li>
-					<li><a href="<s:url value="/employees/new" />"
-						title="<s:message code="navbar.newEm"></s:message>"><s:message
-								code="navbar.newEm"></s:message></a></li>
+								code="navbar.employees"></s:message></a></li>				
 					<li><a href="<s:url value="/departments/" />"
 						title="<s:message code="navbar.depart"></s:message>"><s:message
 								code="navbar.depart"></s:message></a></li>
+					<li><a href="<s:url value="/departments/new" />"
+						title="<s:message code="navbar.newDepart"></s:message>"><s:message
+								code="navbar.newDepart"></s:message></a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -56,17 +56,17 @@
 	<div class="container">
 
 		<div class="jumbotron">
-			<h1>Departments list</h1>
-			<p>These are the departments currently in the system.</p>
+			<h1><s:message code="messageListD"></s:message></h1>
+			<p><s:message code="messageCurrentlyD"></s:message></p>
 		</div>
 
 		<table class="table">
 			<thead>
 				<tr>
 					<th>Id</th>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Actions</th>
+					<th><s:message code="table.name"></s:message></th>
+					<th><s:message code="table.description"></s:message></th>
+					<th><s:message code="table.actions"></s:message></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -77,10 +77,10 @@
 						<td>${department.getDescription()}</td>
 						<td><a class="btn btn-success"
 							href="<s:url value="/departments/${department.getId()}" />"
-							title="Detailed info"> see detail</a> <a class="btn btn-warning"
-							href="<c:url value="/departments/update/${department.getId()}" />">update</a>
+							title="Detailed info"><s:message code="btnDetail"></s:message></a> <a class="btn btn-warning"
+							href="<c:url value="/departments/update/${department.getId()}" />"><s:message code="btnUpdate"></s:message></a>
 							<a class="btn btn-danger"
-							href="<c:url value="/departments/delete/${department.getId()}" />">delete</a></td>
+							href="<c:url value="/departments/delete/${department.getId()}" />"><s:message code="btnDelete"></s:message></a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
