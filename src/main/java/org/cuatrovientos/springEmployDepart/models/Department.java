@@ -2,9 +2,13 @@ package org.cuatrovientos.springEmployDepart.models;
 
 import java.util.List;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,10 +21,16 @@ import javax.persistence.OneToMany;
 public class Department {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@Pattern(regexp = "[0-9]+", message = "Please, enter a number.")
-	//@Size(min=1, message = "Size avaliable is 1 char long.")
+	@Min(1)
 	private Integer id;
+	
+	@NotNull(message = "Please enter your name")
+	@NotEmpty(message = "Field should not be empty.")
+	@Pattern(regexp = "[A-Za-z]+", message = "Must only contain chars")
 	private String name;
+	
+	@NotNull(message = "Please enter your description")
+	@NotEmpty(message = "Field should not be empty.")
 	private String description;
 
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER, mappedBy ="department")

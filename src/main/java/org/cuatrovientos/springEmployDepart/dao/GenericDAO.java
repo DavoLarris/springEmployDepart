@@ -41,7 +41,7 @@ public class GenericDAO<T> {
 	@Transactional
 	public boolean insert(T entity) {
 		Serializable id = null;
-		getSession().saveOrUpdate(entity);
+		getSession().persist(entity);
 		getSession().flush();
 		
 		id = getSession().getIdentifier(entity);

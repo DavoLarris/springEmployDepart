@@ -19,7 +19,7 @@ public class Employee {
 	private Date birthDate;
 	private String telephone;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	private Department department;
 	
 

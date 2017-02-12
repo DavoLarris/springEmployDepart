@@ -22,12 +22,12 @@
 					<li><a href="<s:url value="/employees/" />"
 						title="<s:message code="navbar.employees"></s:message>"><s:message
 								code="navbar.employees"></s:message></a></li>
-					<li><a href="<s:url value="/employees/new" />"
-						title="<s:message code="navbar.newEm"></s:message>"><s:message
-								code="navbar.newEm"></s:message></a></li>
 					<li><a href="<s:url value="/departments/" />"
 						title="<s:message code="navbar.depart"></s:message>"><s:message
 								code="navbar.depart"></s:message></a></li>
+					<li><a href="<s:url value="/employees/new" />"
+						title="<s:message code="navbar.newEm"></s:message>"><s:message
+								code="navbar.newEm"></s:message></a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -50,7 +50,7 @@
 	</nav>
 	<div class="container">
 		<div class="jumbotron">
-			<h1>Update employee</h1>
+			<h1><s:message code="messageUpdate"></s:message></h1>
 		</div>
 
 		<s:url var="post_employee" value="/employees/saveUpdated" />
@@ -85,6 +85,16 @@
 					<sf:input path="telephone" class="form-control" type="tel"
 						placeholder="Telephone" />
 					<sf:errors path="telephone" cssClass="error" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="department" class="control-label col-sm-1"><s:message
+								code="department"></s:message></label>
+				<div class="col-sm-11">
+					<sf:select path="idDepartment" class="form-control" >
+						<sf:option value="0" label="" /> 
+						<sf:options items="${department}" />
+					</sf:select>
 				</div>
 			</div>
 			<div class="form-group">

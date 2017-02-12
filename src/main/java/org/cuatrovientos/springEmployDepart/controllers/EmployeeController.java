@@ -154,7 +154,8 @@ public class EmployeeController {
 		logger.info("Showing update view GET ");
 
 		// We find the employee through DAO and load into model
-		model.addAttribute("employee", employeeDAO.selectById(employeeId, Employee.class));
+		model.addAttribute("employee", EmployeeMapper.toDTO(employeeDAO.selectById(employeeId, Employee.class)));
+		model.addAttribute("department", employeeDAO.getDepartmentsId());
 
 		return "employee/update";
 	}
@@ -164,9 +165,10 @@ public class EmployeeController {
 	 * Handles the POST from the Custom.jsp page to update the employee.
 	 */
 	@RequestMapping(value = "/employees/saveUpdated", method = RequestMethod.POST)
-	public ModelAndView saveUpdate(Employee employee) {
-		logger.info("Save employee " + employee.getId());
-
+	public ModelAndView saveUpdate(EmployeeDTO employeeDTO) {
+		logger.info("Save employee " + employeeDTO.getId());
+		Employee employee = EmployeeMapper.toEmployee(employeeDTO, employeeDAO.getDepartment(employeeDTO.getIdDepartment()));
+		
 		employeeDAO.update(employee);
 
 		ModelAndView modelAndView = new ModelAndView();
@@ -175,8 +177,20 @@ public class EmployeeController {
 		modelAndView.addObject("employee", employee);
 
 		// The same as return "employee/saveUpdate"
-		modelAndView.setViewName("employee/created");
+		modelAndView.setViewName("employee/saveUpdated");
 		return modelAndView;
 	}
 
+	/**
+	 * search employees by name, then return to employees
+	 */
+	@RequestMapping(value = "/employees/search/{name}", method = RequestMethod.GET)
+	public String searchProductTypes (@PathVariable(value = "name") String name, Model model) {
+		logger.info("Searching employees");
+		
+		List<Employee> employees = employeeDAO.selectByName(name);
+		model.addAttribute("employees", employees);
+		
+		return "employee/employees";
+	}
 }

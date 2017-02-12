@@ -55,12 +55,11 @@
 	</nav>
 	<div class="container">
 		<div class="jumbotron">
-			<h1>New employee</h1>
-			<p>See this employee info</p>
+			<h1><s:message code="navbar.newDepart"></s:message></h1>
 		</div>
-		<c:url var="post_employee" value="/departments/new" />
+		<c:url var="post_department" value="/departments/new" />
 		<sf:form method="post" modelAttribute="department"
-			class="form-horizontal" action="${post_employee}">
+			class="form-horizontal" action="${post_department}">
 			<div class="form-group">
 				<label for="name" class="control-label col-sm-1"><s:message
 						code="table.name"></s:message></label>
@@ -75,16 +74,6 @@
 				<div class="col-sm-11">
 					<sf:input path="description" class="form-control" type="text" />
 					<sf:errors path="description" cssClass="error" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="employees" class="control-label col-sm-1"><s:message
-						code="navbar.employees"></s:message></label>
-				<div class="col-sm-11">
-					<sf:select multiple="true" path="idsEmployees">
-						<sf:options items="${employees}" />
-					</sf:select>
-					<sf:errors path="idsEmployees" cssClass="error" />
 				</div>
 			</div>
 			<div class="form-group">

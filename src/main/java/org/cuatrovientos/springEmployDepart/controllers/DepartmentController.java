@@ -6,11 +6,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.cuatrovientos.springEmployDepart.dao.DepartmentDAO;
-import org.cuatrovientos.springEmployDepart.dtos.DepartmentDTO;
-import org.cuatrovientos.springEmployDepart.mapper.DepartmentMapper;
-import org.cuatrovientos.springEmployDepart.mapper.EmployeeMapper;
 import org.cuatrovientos.springEmployDepart.models.Department;
-import org.cuatrovientos.springEmployDepart.models.Employee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,8 +54,7 @@ public class DepartmentController {
 	public String newDepartment(Map<String, Object> model) {
 		logger.info("Showing custom view GET ");
 		
-		model.put("department", new DepartmentDTO());
-		model.put("employees", departmentDAO.getEmployeeIds());
+		model.put("department", new Department());
 		
 		return "department/newDepartment";
 	}
@@ -70,21 +65,18 @@ public class DepartmentController {
 	 * @return the name of the view to show RequestMapping({"/departments/new"})
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = { "/departments/new" })
-	public ModelAndView createDepartment(@ModelAttribute("department") @Valid DepartmentDTO departmentDTO, BindingResult bindingResult) {
-		logger.info("Saveview POST " + departmentDTO.getId());
+	public ModelAndView createDepartment(@ModelAttribute("department") @Valid Department department, BindingResult bindingResult) {
+		logger.info("Saveview POST " + department.getId());
 		ModelAndView modelAndView = new ModelAndView();
+		
 		logger.info(bindingResult.getAllErrors().toString());
 		if (bindingResult.hasErrors()) {
 			
 			modelAndView.setViewName("department/newDepartment");
-			modelAndView.addObject("department", departmentDTO);
-			modelAndView.addObject("employees", departmentDAO.getEmployeeIds());
+			modelAndView.addObject("department", department);
 			return modelAndView;
 		}
 		
-		Department department = DepartmentMapper.toDepartment(departmentDTO, departmentDAO.getList(departmentDTO.getIdsEmployees()));
-
-
 		if (departmentDAO.insert(department)) {
 			// We return view name
 			modelAndView.setViewName("department/created");

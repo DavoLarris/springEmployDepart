@@ -16,8 +16,14 @@ public class EmployeeMapper {
 	}
 
 	public static EmployeeDTO toDTO(Employee employee) {
-		EmployeeDTO employeeDTO = new EmployeeDTO(employee.getId(), employee.getName(),
-				employee.getBirthDate(), employee.getTelephone(), employee.getDepartment().getId());
+		EmployeeDTO employeeDTO;
+		if (employee.getDepartment() == null) {
+			employeeDTO = new EmployeeDTO(employee.getId(), employee.getName(), employee.getBirthDate(),
+					employee.getTelephone(), 0);
+		} else {
+			employeeDTO = new EmployeeDTO(employee.getId(), employee.getName(), employee.getBirthDate(),
+					employee.getTelephone(), employee.getDepartment().getId());
+		}
 		return employeeDTO;
 	}
 

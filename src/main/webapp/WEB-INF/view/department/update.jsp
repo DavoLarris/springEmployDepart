@@ -21,13 +21,13 @@
 				<ul class="nav navbar-nav">
 					<li><a href="<s:url value="/employees/" />"
 						title="<s:message code="navbar.employees"></s:message>"><s:message
-								code="navbar.employees"></s:message></a></li>
-					<li><a href="<s:url value="/employees/new" />"
-						title="<s:message code="navbar.newEm"></s:message>"><s:message
-								code="navbar.newEm"></s:message></a></li>
+								code="navbar.employees"></s:message></a></li>				
 					<li><a href="<s:url value="/departments/" />"
 						title="<s:message code="navbar.depart"></s:message>"><s:message
 								code="navbar.depart"></s:message></a></li>
+					<li><a href="<s:url value="/departments/new" />"
+						title="<s:message code="navbar.newDepart"></s:message>"><s:message
+								code="navbar.newDepart"></s:message></a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -51,7 +51,7 @@
 	<div class="container">
 
 		<div class="jumbotron">
-			<h1>Update user</h1>
+			<h1><s:message code="messageUpdate2"></s:message></h1>
 		</div>
 
 		<s:url var="action" value="/departments/saveupdate" />

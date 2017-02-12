@@ -2,21 +2,28 @@ package org.cuatrovientos.springEmployDepart.dtos;
 
 import java.util.Date;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
 public class EmployeeDTO {
 
-	private int id;
+	@Min(1)
+	private Integer id;
+	
 	@NotNull(message = "Please enter your name.")
 	@Pattern(regexp = "[A-Za-z]+", message = "Must only contain chars")
+	@NotEmpty(message = "Field should not be empty.")
 	private String name;
 	
 	@NotNull(message = "Please enter your birth date")
 	@DateTimeFormat(pattern="dd-mm-yyyy")
+	@Past (message="Only the past is valid")
 	private Date birthDate;
 	
 	@NotNull(message = "Please enter your phone number")
@@ -33,7 +40,7 @@ public class EmployeeDTO {
 		
 	}
 	
-	public EmployeeDTO(int id, String name, Date birthDate, String telephone, int idDepartment) {
+	public EmployeeDTO(Integer id, String name, Date birthDate, String telephone, int idDepartment) {
 		this.id = id;
 		this.name = name;
 		this.birthDate = birthDate;
@@ -41,11 +48,11 @@ public class EmployeeDTO {
 		this.idDepartment = idDepartment;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
