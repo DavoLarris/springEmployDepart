@@ -69,6 +69,7 @@
 				<div class="col-sm-11">
 					<sf:input path="name" class="form-control" type="text"
 						placeholder="Name" />
+						<sf:errors path="name" cssClass="error" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -76,6 +77,7 @@
 				<div class="col-sm-11">
 					<sf:textarea path="description" class="form-control"
 						placeholder="Description" />
+					<sf:errors path="description" cssClass="error" />
 				</div>
 			</div>
 			<div class="form-group">

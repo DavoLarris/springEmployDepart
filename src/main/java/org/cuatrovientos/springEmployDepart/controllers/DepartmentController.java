@@ -107,7 +107,7 @@ public class DepartmentController {
 	 * Simply selects the update view for tasks
 	 */
 	@RequestMapping(value = "/departments/update/{id}", method = RequestMethod.GET)
-	public String updateTask(@PathVariable(value = "id") Integer departmentId, Model model) {
+	public String updateDepartment(@PathVariable(value = "id") Integer departmentId, Model model) {
 		logger.info("Showing update department view GET ");
 
 		// We find the task through DAO and load into model
@@ -120,12 +120,19 @@ public class DepartmentController {
 	 * Handles the POST from the Custom.jsp page to update the User.
 	 */
 	@RequestMapping(value = "/departments/saveupdate", method = RequestMethod.POST)
-	public ModelAndView saveUpdateTask(Department department) {
+	public ModelAndView saveUpdateDepartment(@ModelAttribute("department") @Valid Department department, BindingResult bindingResult) {
 		logger.info("Save update department " + department.getId());
-
-		departmentDAO.update(department);
-
 		ModelAndView modelAndView = new ModelAndView();
+		
+		logger.info(bindingResult.getAllErrors().toString());
+		if (bindingResult.hasErrors()) {
+			
+			modelAndView.setViewName("department/update");
+			modelAndView.addObject("department", department);
+			return modelAndView;
+		}
+		
+		departmentDAO.update(department);
 
 		// We pass the user received through this object
 		modelAndView.addObject("department", department);

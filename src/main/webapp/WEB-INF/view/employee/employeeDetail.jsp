@@ -72,8 +72,8 @@
 	</nav>
 	<div class="container">
 		<div class="jumbotron">
-			<h1><s:message code="employeeDetail"></s:message>Employees detail</h1>
-			<p><s:message code="employeeInfo"></s:message>See this employee info</p>
+			<h1><s:message code="employeeDetail"></s:message></h1>
+			<p><s:message code="employeeInfo"></s:message></p>
 		</div>
 		<c:choose>
 			<c:when test="${not empty employee}">
