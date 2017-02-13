@@ -35,20 +35,36 @@
 						title="<s:message code="navbar.newEm"></s:message>"><s:message
 								code="navbar.newEm"></s:message></a></li>
 				</ul>
+				<div class="nav navbar-nav navbar-right">
+					<c:url var="get_employees" value="/employees/search" />
+					<sf:form class="navbar-form" method="post"
+						modelAttribute="employeeS" action="${get_employees}">
+						<div class="input-group">
+							<sf:input path="name" class="form-control" placeholder="Search" />
+							<div class="input-group-btn">
+								<sf:button class="btn btn-default" type="submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</sf:button>
+							</div>
+						</div>
+					</sf:form>
+				</div>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="true"><s:message
+						data-toggle="dropdown" role="button" aria-expanded="true"> <s:message
 								code="navbar.language"></s:message> <span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="?locale=en"><img src="blank.gif"
+							<li><a href="?locale=en"> <img src="blank.gif"
 									class="flag flag-gb"
 									alt="<s:message code="english"></s:message>" /> <s:message
-										code="english"></s:message></a></li>
-							<li><a href="?locale=es"><img src="blank.gif"
+										code="english"></s:message>
+							</a></li>
+							<li><a href="?locale=es"> <img src="blank.gif"
 									class="flag flag-es"
 									alt="<s:message code="spanish"></s:message>" /> <s:message
-										code="spanish"></s:message></a></li>
+										code="spanish"></s:message>
+							</a></li>
 						</ul></li>
 				</ul>
 			</div>

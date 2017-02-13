@@ -44,6 +44,7 @@ public class EmployeeController {
 		
 		List<Employee> employees = employeeDAO.selectAll(Employee.class);
 		model.put("employees", employees);
+		model.put("employeeS", new Employee());
 
 		return "employee/employees";
 	}
@@ -62,6 +63,7 @@ public class EmployeeController {
 		Employee employee = employeeDAO.selectById(id, Employee.class);
 		//The employee gets his own collection of tasks load
 		model.put("employee", employee);
+		model.put("employeeS", new Employee());
 		
 
 		return "employee/employeeDetail";
@@ -80,6 +82,7 @@ public class EmployeeController {
 		
 		model.put("employee", new EmployeeDTO());
 		model.put("department", employeeDAO.getDepartmentsId());
+		model.put("employeeS", new Employee());
 		
 		return "employee/newEmployee";
 	}
@@ -99,6 +102,7 @@ public class EmployeeController {
 			modelAndView.setViewName("employee/newEmployee");
 			modelAndView.addObject("employee", employeeDTO);
 			modelAndView.addObject("department", employeeDAO.getDepartmentsId());
+			modelAndView.addObject("employeeS", new Employee());
 			return modelAndView;
 		}
 		
@@ -109,6 +113,7 @@ public class EmployeeController {
 			// We return view name
 			modelAndView.setViewName("employee/created");
 			modelAndView.addObject("employee", employee);
+			modelAndView.addObject("employeeS", new Employee());
 		} else {
 			modelAndView.setViewName("error");
 			modelAndView
@@ -129,6 +134,7 @@ public class EmployeeController {
 		
 		employeeDAO.delete(employeeDAO.selectById(employeeId, Employee.class));
 		model.addAttribute("employeeId", employeeId);
+		model.addAttribute("employeeS", new Employee());
 
 		return "employee/deleted";
 	}
@@ -138,9 +144,11 @@ public class EmployeeController {
 	 * Delete the specific employee
 	 */
 	@RequestMapping(value = "/employees/deleteall", method = RequestMethod.GET)
-	public String deleteAll() {
+	public String deleteAll(Map<String, Object> model) {
 		logger.info("Employee deleteAll");
 		employeeDAO.deleteAll();
+
+		model.put("employeeS", new Employee());
 
 		return "employee/employees";
 	}
@@ -156,6 +164,7 @@ public class EmployeeController {
 		// We find the employee through DAO and load into model
 		model.addAttribute("employee", EmployeeMapper.toDTO(employeeDAO.selectById(employeeId, Employee.class)));
 		model.addAttribute("department", employeeDAO.getDepartmentsId());
+		model.addAttribute("employeeS", new Employee());
 
 		return "employee/update";
 	}
@@ -175,6 +184,7 @@ public class EmployeeController {
 
 		// We pass the employee received through this object
 		modelAndView.addObject("employee", employee);
+		modelAndView.addObject("employeeS", new Employee());
 
 		// The same as return "employee/saveUpdate"
 		modelAndView.setViewName("employee/saveUpdated");
@@ -184,12 +194,13 @@ public class EmployeeController {
 	/**
 	 * search employees by name, then return to employees
 	 */
-	@RequestMapping(value = "/employees/search/{name}", method = RequestMethod.GET)
-	public String searchProductTypes (@PathVariable(value = "name") String name, Model model) {
+	@RequestMapping(value = "/employees/search", method = RequestMethod.POST)
+	public String searchProductTypes (Employee employee, Model model) {
 		logger.info("Searching employees");
 		
-		List<Employee> employees = employeeDAO.selectByName(name);
+		List<Employee> employees = employeeDAO.selectByName(employee.getName());
 		model.addAttribute("employees", employees);
+		model.addAttribute("employeeS", new Employee());
 		
 		return "employee/employees";
 	}

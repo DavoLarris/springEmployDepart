@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -36,17 +37,17 @@
 				</ul>
 				<div class="nav navbar-nav navbar-right">
 					<c:url var="get_employees" value="/employees/search" />
-					<form class="navbar-form" method="get" action="${get_employees}">
+					<sf:form class="navbar-form" method="post"
+						modelAttribute="employeeS" action="${get_employees}">
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search"/>
+							<sf:input path="name" class="form-control" placeholder="Search" />
 							<div class="input-group-btn">
-								<button class="btn btn-default" type="submit">
+								<sf:button class="btn btn-default" type="submit">
 									<i class="glyphicon glyphicon-search"></i>
-								</button>
+								</sf:button>
 							</div>
 						</div>
-					</form>
-
+					</sf:form>
 				</div>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
